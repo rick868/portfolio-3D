@@ -22,7 +22,7 @@ const Footer = () => {
           
           <div className="flex items-center space-x-6">
             <a 
-              href="https://github.com" 
+              href="https://github.com/rick868" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-foreground/70 hover:text-accent transition-colors"
@@ -45,7 +45,7 @@ const Footer = () => {
             </a>
             
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/felix-gishu-9a75b5337/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-foreground/70 hover:text-accent transition-colors"
@@ -94,7 +94,7 @@ const Footer = () => {
         
         <div className="border-t border-border/30 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-foreground/60 text-sm mb-4 md:mb-0">
-            &copy; {currentYear} Felix Gishu. All rights reserved.
+            &copy; {currentYear} 2025. All rights reserved.
           </p>
           
           <Button 

@@ -32,7 +32,7 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto flex justify-between items-center">
-        <a href="#" className="text-2xl font-bold text-primary">FG</a>
+        <a href="#" className="text-2xl font-bold text-primary">PORTFOLIO</a>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
