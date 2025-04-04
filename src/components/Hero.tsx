@@ -1,9 +1,11 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 
 const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const [isDownloading, setIsDownloading] = useState(false);
   
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -33,9 +35,56 @@ const Hero = () => {
     }
   };
 
-  const downloadCV = () => {
-    // This is a placeholder. In a real implementation, this would download the CV file
-    alert("CV download functionality will be connected to the database");
+  const downloadCV = async () => {
+    setIsDownloading(true);
+    try {
+      // Connect to the database to get the CV file
+      const response = await fetch('https://zghdydmckwieebznjrnt.supabase.co/rest/v1/profile?select=cv_url', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnaGR5ZG1ja3dpZWViem5qcm50Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODAyMzQyMDYsImV4cCI6MTk5NTgxMDIwNn0.L87PsWFqJ6esN8gSkeoJsMgXxVkNvmWDsqeIWQVkAQA',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnaGR5ZG1ja3dpZWViem5qcm50Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODAyMzQyMDYsImV4cCI6MTk5NTgxMDIwNn0.L87PsWFqJ6esN8gSkeoJsMgXxVkNvmWDsqeIWQVkAQA'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch CV');
+      }
+
+      const data = await response.json();
+      
+      if (data && data.length > 0 && data[0].cv_url) {
+        // Create a temporary link to download the file
+        const link = document.createElement('a');
+        link.href = data[0].cv_url;
+        link.setAttribute('download', 'Felix_Gishu_CV.pdf');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        toast({
+          title: "Download Started",
+          description: "Your CV download has started",
+        });
+      } else {
+        // If CV URL is not found in the database, show a fallback message
+        toast({
+          title: "CV Not Available",
+          description: "The CV is currently not available. Please try again later.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Error downloading CV:', error);
+      toast({
+        title: "Download Failed",
+        description: "There was a problem downloading the CV. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   return (
@@ -69,11 +118,12 @@ const Hero = () => {
           
           <Button 
             onClick={downloadCV}
+            disabled={isDownloading}
             variant="outline" 
             className="border-primary text-primary hover:bg-primary/10 px-8 py-6"
             size="lg"
           >
-            Download CV
+            {isDownloading ? 'Downloading...' : 'Download CV'}
           </Button>
         </div>
         

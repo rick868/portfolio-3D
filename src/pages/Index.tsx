@@ -1,5 +1,6 @@
 
 import { useEffect } from "react";
+import { Toaster } from "@/components/ui/toaster";
 import ThreeScene from "@/components/ThreeScene";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -32,6 +33,7 @@ const Index = () => {
           <Contact />
         </main>
         <Footer />
+        <Toaster />
       </div>
     </div>
   );
