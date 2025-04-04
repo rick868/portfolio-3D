@@ -49,10 +49,11 @@ const About = () => {
           >
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden mx-auto border-4 border-accent/20">
-                {/* Profile Image Placeholder */}
-                <div className="w-full h-full bg-gradient-to-br from-primary/40 to-accent/40 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-foreground">FG</span>
-                </div>
+                <img 
+                  src="/src/assets/official.jpg" 
+                  alt="Profile" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               <div className="absolute -z-10 top-4 left-1/2 transform -translate-x-1/2 w-64 h-64 md:w-80 md:h-80 rounded-full bg-accent/20 blur-xl"></div>
