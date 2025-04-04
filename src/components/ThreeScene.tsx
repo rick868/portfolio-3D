@@ -35,9 +35,9 @@ const ThreeScene = () => {
     const colors = new Float32Array(count * 3);
     
     const colorOptions = [
-      new THREE.Color(0xE5DEFF), // Soft purple
-      new THREE.Color(0x8B5CF6), // Vivid purple
-      new THREE.Color(0xD946EF)  // Magenta pink
+      new THREE.Color(0xD1D1D1), // Light gray
+      new THREE.Color(0x7F3ACE), // Deep purple
+      new THREE.Color(0xE53E3E)  // Deep red
     ];
     
     for (let i = 0; i < count * 3; i += 3) {
